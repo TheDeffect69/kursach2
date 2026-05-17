@@ -170,11 +170,11 @@ void MainWindow::drawTree(NodeData* node)
     }
 
     // Draw the node itself
-    QGraphicsRectItem* rectItem = scene->addRect(node->x, node->y, node->width, node->height, QPen(Qt::black, 2), QBrush(Qt::white));
+    scene->addRect(node->x, node->y, node->width, node->height, QPen(Qt::black, 2), QBrush(Qt::white));
 
     // Special border for root node
     if (node->depth == 0) {
-        QGraphicsRectItem* innerRect = scene->addRect(node->x + 5, node->y + 5, node->width - 10, node->height - 10, QPen(Qt::black, 1));
+        scene->addRect(node->x + 5, node->y + 5, node->width - 10, node->height - 10, QPen(Qt::black, 1));
     }
 
     QGraphicsTextItem* textItem = scene->addText(node->name);
