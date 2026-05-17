@@ -54,6 +54,7 @@ void MainWindow::parseAndDrawXml(const QString &fileName)
     }
 
     QDomDocument doc;
+#if QT_VERSION < QT_VERSION_CHECK(6, 5, 0)
     QString errorStr;
     int errorLine;
     int errorColumn;
@@ -65,6 +66,16 @@ void MainWindow::parseAndDrawXml(const QString &fileName)
         file.close();
         return;
     }
+#else
+    QDomDocument::ParseResult result = doc.setContent(&file);
+    if (!result) {
+        QMessageBox::warning(this, "Parse Error",
+                             QString("Parse error at line %1, column %2:\n%3")
+                             .arg(result.errorLine).arg(result.errorColumn).arg(result.errorMessage));
+        file.close();
+        return;
+    }
+#endif
     file.close();
 
     scene->clear();
