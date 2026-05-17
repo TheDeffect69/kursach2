@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<item name="Load Balancer (Nginx)">
+    <item name="Web Server (Node.js)">
+        <item name="Frontend Artifact (React.js)">
+        </item>
+        <item name="Backend Component (API)">
+        </item>
+    </item>
+    <item name="Database Server (PostgreSQL)">
+        <item name="Data Volumes (SSD)">
+        </item>
+    </item>
+    <item name="Cache Server (Redis)">
+    </item>
+</item>
