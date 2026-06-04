@@ -10,7 +10,7 @@ set(CMAKE_AUTOUIC ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core Gui Widgets Xml)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Gui Widgets Xml)
 
-add_executable(UmlDeploymentDiagram
+add_executable(UmlDeploymentDiagram WIN32
     main.cpp
     mainwindow.cpp
     mainwindow.h
