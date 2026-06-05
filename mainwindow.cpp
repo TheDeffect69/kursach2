@@ -11,6 +11,7 @@
 #include <QPen>
 #include <QBrush>
 #include <QDebug>
+#include <utility>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -141,8 +142,7 @@ void MainWindow::calculateLayout(NodeData* node, int &currentX)
         node->y = node->depth * (ITEM_HEIGHT + VERTICAL_SPACING);
         currentX += ITEM_WIDTH + HORIZONTAL_SPACING;
     } else {
-        int startX = currentX;
-        for (NodeData* child : node->children) {
+        for (NodeData* child : std::as_const(node->children)) {
             calculateLayout(child, currentX);
         }
 
@@ -157,7 +157,7 @@ void MainWindow::calculateLayout(NodeData* node, int &currentX)
 void MainWindow::drawTree(NodeData* node)
 {
     // Draw connections to children first so they are behind the rectangles
-    for (NodeData* child : node->children) {
+    for (NodeData* child : std::as_const(node->children)) {
         int parentBottomX = node->x + node->width / 2;
         int parentBottomY = node->y + node->height;
         int childTopX = child->x + child->width / 2;
@@ -198,7 +198,7 @@ void MainWindow::drawTree(NodeData* node)
 
 void MainWindow::freeTree(NodeData* node)
 {
-    for (NodeData* child : node->children) {
+    for (NodeData* child : std::as_const(node->children)) {
         freeTree(child);
     }
     delete node;
